@@ -1,0 +1,32 @@
+spring:
+  port: 8081
+  application:
+    name: redisessionmanagement
+  data:
+    redis:
+      host: localhost
+      port: 6379
+    session:
+      store-type: redis
+      redis:
+        flush-mode: on-save
+        namespace: spring:session
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.viswa.redisessionmanagement: DEBUG
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{correlationId:-}] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
